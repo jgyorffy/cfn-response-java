@@ -51,7 +51,7 @@ public class CfnResponseSender {
      */
     public <T> boolean send(@Nonnull final CfnRequest<?> event, @Nonnull final Status status, @Nonnull final Context context,
                             @Nullable final String reason, @Nullable final T data, @Nullable final String physicalResourceId) {
-        return send(event, status, context, reason, data, physicalResourceId, null);
+        return send(event, status, context, reason, data, physicalResourceId, false);
     }
 
     /**
@@ -69,7 +69,7 @@ public class CfnResponseSender {
      */
     public <T> boolean send(@Nonnull final CfnRequest<?> event, @Nonnull final Status status, @Nonnull final Context context,
                             @Nullable final String reason, @Nullable final T data, @Nullable final String physicalResourceId,
-                            @Nullable final Boolean noEcho) {
+                            final boolean noEcho) {
         // Sanitize inputs
         checkNotNull(event, "event");
         checkNotNull(status, "status");
@@ -84,7 +84,7 @@ public class CfnResponseSender {
         response.setReason(reason == null ? "See the details in CloudWatch Log Stream: " + context.getLogStreamName() : reason);
         response.setRequestId(event.getRequestId());
         response.setStackId(event.getStackId());
-        response.setNoEcho(noEcho == null ? false : noEcho);
+        response.setNoEcho(noEcho);
 
         // Send response
         final HttpPut put = new HttpPut(event.getResponseURL());

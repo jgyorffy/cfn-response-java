@@ -12,7 +12,7 @@ public class CfnResponse<T> {
     private String PhysicalResourceId;
     private Status Status;
     private String Reason;
-    private Boolean NoEcho = false;
+    private boolean NoEcho;
     private T Data;
 
     public String getStackId() {

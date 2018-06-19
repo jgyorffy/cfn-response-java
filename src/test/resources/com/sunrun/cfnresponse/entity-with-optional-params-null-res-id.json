@@ -6,8 +6,8 @@
     "FieldOne":"value one",
     "FieldTwo":"value two"
   },
-  "PhysicalResourceId":"custom-physical-resource-id-123",
-  "Reason":"my custom reason",
+  "PhysicalResourceId":"log-stream-name-123",
+  "Reason":"my custom reason2",
   "Status":"SUCCESS",
   "NoEcho": true
 }
